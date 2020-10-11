@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat App</title>
+    <link rel="icon" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/styles.min.css" />
+</head>
+
+<body>
+
+    <div class="chat">
+        <div id="sidebar" class="chat__sidebar"></div>
+        <div class="chat__main">
+            <div id="messages" class="chat__messages"></div>
+            <div class="compose">
+                <form>
+                    <!--autocomplete => 3shan lw dost click 3ala send wel input fady ytl3ly msg n lazm a3ml fill lel input-->
+                    <input type="text" placeholder="type ur message...." required autocomplete="off" />
+                    <button> Send</button>
+                </form>
+                <button id="sendLocation">Send ur Location</button>
+            </div>
+        </div>
+    </div>
+    <script id="message-template" type="text/html">
+    <div class="message">
+        <p>
+            <span class="message__name">{{username}}</span>
+            <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p>{{message}}</p>
+    </div>
+</script>
+    <script id="location-template" type="text/html">
+    <div>
+        <span class="message__name">{{username}}</span>
+        <span class="message__meta">{{createdAt}}</span>
+    <p> <a href={{locationUrl}} target="_blank"> My Location</a> </p>
+    </div>
+</script>
+
+    <script id="sidebar-template" type="text/html">
+   <h1 class="room-title">{{room}}</h1>
+
+   <h3 class="list-title">users</h3>
+   <ul class="users">
+       <!--l fekra hena n ha3ml render l array of objects l hwa l users fa kda 3ayza a3ml render le kol object gwa l array da w 3shan kda ast5dmna l syntax da-->
+      {{#users}}<!-- this syntax is for opening this array -->
+
+      <li>{{username}}</li><!-- da kda for each user hyb2a fe l username bta3o w da l na 3ayzah bs -->
+
+      {{/users}}<!-- this syntax is for closing this array -->
+   </ul>
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+
+</html>
