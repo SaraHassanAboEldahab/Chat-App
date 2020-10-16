@@ -113,10 +113,8 @@ socket.on("typing", (content) => {
     if (content !== "") {
         return document.getElementById("typing").innerHTML = "typing.... "
     }
-    else {
         return document.getElementById("typing").innerHTML = ""
 
-    }
 })
 
 socket.emit("join", { username, room }, (error) => {
