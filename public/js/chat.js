@@ -74,14 +74,12 @@ socket.on("roomData", ({ room, users }) => {
 
 msgForm.addEventListener("submit", (e) => {
     e.preventDefault()
-
     //// Disabled
     msgFormButton.setAttribute("disabled", "disabled")
     const msg = msgFormIn.value
     socket.emit("sendMsg", msg, (error) => {
         //enable
         msgFormButton.removeAttribute("disabled")
-        document.getElementById("typing").innerHTML = ""
         msgFormIn.value = ""
         msgFormIn.focus()
         if (error) {
@@ -111,7 +109,7 @@ msgFormIn.addEventListener("keyup", () => {
     socket.emit("typing", content)
 })
 socket.on("typing", (content) => {
-    if (content != "") {
+    if (content !== "") {
       return document.getElementById("typing").innerHTML = "typing...."
     }
     document.getElementById("typing").innerHTML = ""
