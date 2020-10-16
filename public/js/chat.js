@@ -106,14 +106,14 @@ sendButton.addEventListener("click", () => {
 })
 
 msgFormIn.addEventListener("keyup", () => {
-    content = msgFormIn.value
+    const content = msgFormIn.value
     socket.emit("typing", content)
 })
 socket.on("typing", (content) => {
-    if (content !== "") {
-        return document.getElementById("typing").innerHTML = "typing.... "
+    if (content != "") {
+      return document.getElementById("typing").innerHTML = "typing...."
     }
-        return document.getElementById("typing").innerHTML = ""
+    document.getElementById("typing").innerHTML = ""
 
 })
 
