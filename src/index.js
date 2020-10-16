@@ -42,7 +42,10 @@ io.on('connection', (socket) => {
         io.to(user.room).emit("sendMsg", generateMsg(user.username, msg))
         callback()
     })
-
+    socket.on("typing", (content) => {
+        const user = getUser(socket.id)
+        socket.broadcast.to(user.room).emit("typing", content)
+    })
     socket.on("sendLocation", (coords, callback) => {
         const user = getUser(socket.id)
         io.to(user.room).emit("locationMsg", generateLocationMsg(user.username, `http://google.com/maps?q=${coords.latitude},${coords.longitude}`))

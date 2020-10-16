@@ -37,7 +37,7 @@ const autoScroll = () => {
 
     if (containerHeight - newMsgHeight <= scrollOffset) {
         messages.scrollTop = containerHeight
-        }
+    }
 }
 
 socket.on("sendMsg", (message) => {
@@ -81,7 +81,7 @@ msgForm.addEventListener("submit", (e) => {
     socket.emit("sendMsg", msg, (error) => {
         //enable
         msgFormButton.removeAttribute("disabled")
-        msgFormIn.value = " "
+        msgFormIn.value = ""
         msgFormIn.focus()
         if (error) {
             return console.log(error)
@@ -103,6 +103,20 @@ sendButton.addEventListener("click", () => {
             console.log("location is shared :)")
         })
     })
+})
+
+msgFormIn.addEventListener("keyup", () => {
+    content = msgFormIn.value
+    socket.emit("typing", content)
+})
+socket.on("typing", (content) => {
+    if (content !== "") {
+        return document.getElementById("typing").innerHTML = "typing.... "
+    }
+    else {
+        return document.getElementById("typing").innerHTML = ""
+
+    }
 })
 
 socket.emit("join", { username, room }, (error) => {
