@@ -71,7 +71,12 @@ socket.on("roomData", ({ room, users }) => {
     })
     sidebar.innerHTML = html
 })
-
+socket.on("typing", (content) => {
+    if (content !== "") {
+      return document.getElementById("typing").textContent = "typing...."
+    }
+    document.getElementById("typing").textContent = ""
+})
 msgForm.addEventListener("submit", (e) => {
     e.preventDefault()
     //// Disabled
@@ -107,12 +112,6 @@ sendButton.addEventListener("click", () => {
 msgFormIn.addEventListener("keyup", () => {
     const content = msgFormIn.value
     socket.emit("typing", content)
-})
-socket.on("typing", (content) => {
-    document.getElementById("typing").textContent = ""
-    if (content !== "") {
-      return document.getElementById("typing").textContent = "typing...."
-    }
 })
 
 socket.emit("join", { username, room }, (error) => {
