@@ -81,6 +81,7 @@ msgForm.addEventListener("submit", (e) => {
     socket.emit("sendMsg", msg, (error) => {
         //enable
         msgFormButton.removeAttribute("disabled")
+        document.getElementById("typing").innerHTML = ""
         msgFormIn.value = ""
         msgFormIn.focus()
         if (error) {
