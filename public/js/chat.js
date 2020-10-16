@@ -109,11 +109,10 @@ msgFormIn.addEventListener("keyup", () => {
     socket.emit("typing", content)
 })
 socket.on("typing", (content) => {
+    document.getElementById("typing").textContent = ""
     if (content !== "") {
-      return document.getElementById("typing").innerHTML = "typing...."
+      return document.getElementById("typing").textContent = "typing...."
     }
-    document.getElementById("typing").innerHTML = ""
-
 })
 
 socket.emit("join", { username, room }, (error) => {
