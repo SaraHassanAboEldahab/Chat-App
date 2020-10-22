@@ -73,7 +73,7 @@ socket.on("roomData", ({ room, users }) => {
 })
 socket.on("typing", (content) => {
     if (content !== "") {
-      return document.getElementById("typing").textContent = "typing...."
+        return document.getElementById("typing").textContent = "typing...."
     }
     document.getElementById("typing").textContent = ""
 })
@@ -120,4 +120,5 @@ socket.emit("join", { username, room }, (error) => {
         location.href = "/"
     }
 })
+console.log("ay 7aga")
 

@@ -33,6 +33,7 @@ io.on('connection', (socket) => {
             users: getUsersInRoom(user.room)
         })
     })
+    console.log("ay 7aga")
     socket.on("sendMsg", (msg, callback) => {
         const user = getUser(socket.id)
         const filter = new Filter()
